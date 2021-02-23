@@ -1,3 +1,3 @@
 module.exports = {
-  projects: ['<rootDir>/apps/fullstack-type-safety'],
+  projects: ['<rootDir>/apps/fullstack-type-safety', '<rootDir>/apps/api'],
 };
