@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fullstack-type-safety/products": ["libs/products/src/index.ts"]
+      "@fullstack-type-safety/products": ["libs/products/src/index.ts"],
+      "@fullstack-type-safety/ui/products": ["libs/ui/products/src/index.ts"],
+      "@fullstack-type-safety/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

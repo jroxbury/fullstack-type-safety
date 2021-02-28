@@ -22,6 +22,8 @@
       "implicitDependencies": ["fullstack-type-safety"]
     },
     "api": { "tags": [] },
-    "products": { "tags": [] }
+    "products": { "tags": [] },
+    "ui-products": { "tags": [] },
+    "types": { "tags": [] }
   }
 }
