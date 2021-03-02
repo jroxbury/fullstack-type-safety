@@ -1,5 +1,11 @@
 <ng-container *ngIf="data$ | async as data">
-  <div *ngFor="let item of data">
-    {{ item.name }}
+  <div class="container">
+    <div class="item" *ngFor="let item of data">
+      <h1>{{ item.name }}</h1>
+      <p>Description: {{ item.description }}</p>
+      <p>Price: {{ item.price }}</p>
+      <p>SKU: {{ item.sku }}</p>
+      <img [src]="item.image" [alt]="item.name" />
+    </div>
   </div>
 </ng-container>
