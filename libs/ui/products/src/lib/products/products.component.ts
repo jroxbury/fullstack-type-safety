@@ -1,19 +1,45 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Product } from '@prisma/client';
-import { Environment } from '@fullstack-type-safety/types';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductsService } from '../products.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'fullstack-type-safety-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsComponent {
-  public data$ = this._http.get<Product[]>(`${this._environment.api}/products`);
+export class ProductsComponent implements OnInit {
+  public data;
+  public form: FormGroup;
 
   constructor(
-    private _http: HttpClient,
-    @Inject('environment') private _environment: Environment
+    private _fb: FormBuilder,
+    private _productService: ProductsService
   ) {}
+
+  ngOnInit() {
+    this.form = this._fb.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      image: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      sku: ['', [Validators.required]],
+    });
+
+    this._getProducts();
+  }
+
+  public submit() {
+    this._productService.addProduct(this.form.value).subscribe(() => {
+      this.form.reset();
+      this._getProducts();
+    });
+  }
+
+  private _getProducts() {
+    this._productService
+      .getProducts()
+      .pipe(take(1))
+      .subscribe((data) => (this.data = data));
+  }
 }

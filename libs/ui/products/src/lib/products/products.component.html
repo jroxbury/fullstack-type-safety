@@ -1,4 +1,4 @@
-<ng-container *ngIf="data$ | async as data">
+<ng-container *ngIf="data">
   <div class="container">
     <div class="item" *ngFor="let item of data">
       <h1>{{ item.name }}</h1>
@@ -9,3 +9,37 @@
     </div>
   </div>
 </ng-container>
+
+<h1>Add Product</h1>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>
+    Product Name:
+    <input type="text" formControlName="name" />
+  </label>
+  <br />
+
+  <label>
+    Product Description:
+    <input type="text" formControlName="description" />
+  </label>
+  <br />
+
+  <label>
+    Image Url:
+    <input type="text" formControlName="image" />
+  </label>
+  <br />
+
+  <label>
+    Product Price:
+    <input type="number" formControlName="price" />
+  </label>
+  <br />
+
+  <label>
+    Product SKU:
+    <input type="text" formControlName="sku" />
+  </label>
+
+  <button [disabled]="!form.valid">Submit</button>
+</form>
